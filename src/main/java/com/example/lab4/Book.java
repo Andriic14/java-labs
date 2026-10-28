@@ -109,5 +109,15 @@ public class Book {
                 && Objects.equals(title, book.title)
                 && Objects.equals(author, book.author);
     }
+
+    /**
+     * Обчислює хеш-код, узгоджений з {@link #equals(Object)}.
+     *
+     * @return хеш-код книги
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author, year, pages, price);
+    }
 }
 
