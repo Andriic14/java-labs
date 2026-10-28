@@ -1,4 +1,5 @@
 package com.example.lab4;
+import java.util.Objects;
 /**
  * Книга: назва, автор, рік видання, кількість сторінок і ціна.
  */
@@ -76,4 +77,37 @@ public class Book {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    /**
+     * Повертає текстове подання книги.
+     *
+     * @return рядок з усіма полями
+     */
+    @Override 
+    public String toString() {
+        return "Book{title='" + title + "', author='" + author + "', year=" + year + ", pages=" + pages + ", price=" + price + "}";
+    }
+
+    /**
+     * Порівнює книги за значеннями всіх полів.
+     *
+     * @param o об'єкт для порівняння
+     * @return true, якщо o є книгою з такими самими полями
+     */
+    @Override 
+    public boolean equals(Object o){
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Book book = (Book) o;
+        return year == book.year 
+                && pages == book.pages
+                && Double.compare(price, book.price) == 0
+                && Objects.equals(title, book.title)
+                && Objects.equals(author, book.author);
+    }
 }
+
