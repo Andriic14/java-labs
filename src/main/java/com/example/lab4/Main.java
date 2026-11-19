@@ -17,9 +17,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Book[] books = new Book[BOOKS_COUNT];
         
-        books[0] = new Book("Kobzar", "Taras Shevchenko", 1840, 240, 150.0);
-        books[1] = new Book("Zakhar Berkut", "Ivan Franko", 1883, 320, 180.5);
-        books[2] = new Book("Forest Song", "Lesya Ukrainka", 1911, 160, 120.0);
+        books[0] = new Book("Kobzar", "Taras Shevchenko", 1840, 240, 150.0, "9786171234567", "Poetry");
+        books[1] = new Book("Zakhar Berkut", "Ivan Franko", 1883, 320, 180.5, "9786177654321", "Historical");
+        books[2] = new Book("Forest Song", "Lesya Ukrainka", 1911, 160, 120.0, "9789660123456", "Drama");
         
         System.out.println("Введіть дані для книг " + (PREDEFINED_COUNT + 1) + "-" + BOOKS_COUNT + ".");
         for(int i = PREDEFINED_COUNT; i < BOOKS_COUNT; i++) {
@@ -45,7 +45,8 @@ public class Main {
     private static void demonstrateEqualsAndSetters(Book[] books) {
         Book first = books[0];
         Book copy = new Book(first.getTitle(), first.getAuthor(),
-                first.getYear(), first.getPages(), first.getPrice());
+                first.getYear(), first.getPages(), first.getPrice(),
+                first.getIsbn(), first.getGenre());
 
         System.out.println();
         System.out.println("first == copy: " + (first == copy));
@@ -69,7 +70,9 @@ public class Main {
         int year = readInt(scanner, "Рік видання (1-2100): ", 1, 2100);
         int pages = readInt(scanner, "Кількість сторінок (1-10000): ", 1, 10000);
         double price = readDouble(scanner, "Ціна (не менше 0): ", 0);
-        return new Book(title, author, year, pages, price);
+        String isbn = readString(scanner, "ISBN: ");
+        String genre = readString(scanner, "Жанр: ");
+        return new Book(title, author, year, pages, price, isbn, genre);
     }
 
     /**

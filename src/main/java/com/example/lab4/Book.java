@@ -10,6 +10,8 @@ public class Book {
     private int year;
     private int pages;
     private double price;
+    private String isbn;
+    private String genre;
 
     /**
      * Створює книгу із заданими параметрами.
@@ -19,13 +21,17 @@ public class Book {
      * @param year   рік видання
      * @param pages  кількість сторінок
      * @param price  ціна
+     * @param isbn ISBN книги
+     * @param genre жанр
      */
-    public Book(String title, String author, int year, int pages, double price){
+    public Book(String title, String author, int year, int pages, double price, String isbn, String genre){
         this.title = title;
         this.author = author;
         this.year = year;
         this.pages = pages;
         this.price = price;
+        this.isbn = isbn;
+        this.genre = genre;
     }
 
     /** @return назва книги */
@@ -78,6 +84,26 @@ public class Book {
         this.price = price;
     }
 
+    /** @return ISBN книги */
+    public String getIsbn() {
+        return isbn;
+    }
+
+    /** @param isbn новий ISBN */
+    public void setIsbn(String isbn){
+        this.isbn = isbn;
+    }
+
+    /** @return жанр книги */
+    public String getGenre() {
+        return genre;
+    }
+
+    /** @param genre новий жанр */
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
     /**
      * Повертає текстове подання книги.
      *
@@ -85,7 +111,9 @@ public class Book {
      */
     @Override 
     public String toString() {
-        return "Book{title='" + title + "', author='" + author + "', year=" + year + ", pages=" + pages + ", price=" + price + "}";
+        return "Book{title='" + title + "', author='" + author + "', year=" + year 
+            + ", pages=" + pages + ", price=" + price 
+            + ", isbn='" + isbn + "', genre='" + genre + "}";
     }
 
     /**
@@ -107,7 +135,9 @@ public class Book {
                 && pages == book.pages
                 && Double.compare(price, book.price) == 0
                 && Objects.equals(title, book.title)
-                && Objects.equals(author, book.author);
+                && Objects.equals(author, book.author)
+                && Objects.equals(isbn, book.isbn)
+                && Objects.equals(genre, book.genre);
     }
 
     /**
@@ -117,7 +147,7 @@ public class Book {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(title, author, year, pages, price);
+        return Objects.hash(title, author, year, pages, price, isbn, genre);
     }
 }
 
